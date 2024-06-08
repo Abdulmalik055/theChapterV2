@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../components/UserContext"; 
 
 import "./Form.css";
 
 function Form() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const { setUserData } = useContext(UserContext); 
 
   const [formValues, setFormValues] = useState({
     full_name: "",
@@ -114,7 +116,8 @@ function Form() {
 
     if (Object.keys(errors).length === 0) {
       console.log(formValues);
-      Navigate("/allData");
+      setUserData((prevData) => [...prevData, formValues]); 
+      navigate("/allData");
     }
     try {
       const response = await axios.post('https://myapp-58va.onrender.com/api/users/', formValues, {

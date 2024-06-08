@@ -1,23 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { UserContext } from "../components/UserContext";
 
 function AllForm() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://myapp-58va.onrender.com/api/users/');
-        setFormData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { userData } = useContext(UserContext);
 
   return (
     <div>
@@ -36,8 +23,8 @@ function AllForm() {
           </tr>
         </thead>
         <tbody>
-          {formData.map((data) => (
-            <tr key={data.id}>
+          {userData.map((data, index) => (
+            <tr key={index}>
               <td>{data.full_name}</td>
               <td>{data.date_of_birth}</td>
               <td>{data.email}</td>
