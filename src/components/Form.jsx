@@ -117,7 +117,7 @@ function Form() {
       Navigate("/allData");
     }
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/users/', formValues, {
+      const response = await axios.post('https://myapp-58va.onrender.com/api/users/', formValues, {
           headers: {
               'Content-Type': 'application/json',
           },

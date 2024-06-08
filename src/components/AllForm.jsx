@@ -9,7 +9,7 @@ function AllForm() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/users/');
+        const response = await axios.get('https://myapp-58va.onrender.com/api/users/');
         setFormData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
